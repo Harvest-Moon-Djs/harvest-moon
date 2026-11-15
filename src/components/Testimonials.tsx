@@ -3,20 +3,12 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import type { Testimonial } from "@/lib/content";
-import type { CSSProperties } from "react";
 
-// Screens of scrolling each quote stays on. Raise to linger longer, lower to move faster.
-const DESKTOP_SCREENS_PER_QUOTE = 1.1;
-const MOBILE_SCREENS_PER_QUOTE = 0.75;
-const screens = (n: number) => `calc(${n} * (100dvh - 4.5rem))`;
-const responsiveHeight = (desktop: number, mobile: number) =>
-  ({
-    "--desktop-scroll-height": screens(desktop),
-    "--mobile-scroll-height": screens(mobile),
-  }) as CSSProperties;
-
-// The visible part sticks under the header while invisible steps scroll past; whichever step
-// crosses the middle of the screen picks the active quote. After the last one the page scrolls on.
+// Desktop: the heading and quote stick on the left while the names scroll past on the right;
+// whichever name crosses the middle of the screen picks the quote.
+// Below lg nothing sticks: the quotes are just stacked and scroll like the rest of the page.
+// To linger longer per quote, raise the name height (h-[55dvh]); the column padding
+// (22.5dvh - 2.25rem) is half a screen minus half a name, so first and last names land mid-screen.
 export function Testimonials({
   items,
   background,
@@ -25,7 +17,7 @@ export function Testimonials({
   background: string;
 }) {
   const [active, setActive] = useState(0);
-  const steps = useRef<(HTMLDivElement | null)[]>([]);
+  const steps = useRef<(HTMLButtonElement | null)[]>([]);
 
   useEffect(() => {
     const io = new IntersectionObserver(
@@ -43,6 +35,7 @@ export function Testimonials({
 
   const goTo = (i: number) =>
     steps.current[i]?.scrollIntoView({
+      block: "center",
       behavior: matchMedia("(prefers-reduced-motion: reduce)").matches
         ? "auto"
         : "smooth",
@@ -51,46 +44,21 @@ export function Testimonials({
   return (
     <section
       aria-labelledby="testimonios"
-      className="relative h-[var(--desktop-scroll-height)] max-md:h-[var(--mobile-scroll-height)]"
-      style={responsiveHeight(
-        items.length * DESKTOP_SCREENS_PER_QUOTE + 1,
-        items.length * MOBILE_SCREENS_PER_QUOTE + 1,
-      )}
+      className="relative isolate overflow-clip"
     >
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0">
-        {items.map((t, i) => (
-          // Quotes switch when a step crosses mid-screen, so the first and last steps get an extra
-          // half screen; otherwise they'd show for half a screen less than the middle ones.
-          <div
-            key={t.slug}
-            data-i={i}
-            ref={(el) => {
-              steps.current[i] = el;
-            }}
-            style={responsiveHeight(
-              DESKTOP_SCREENS_PER_QUOTE +
-                (i === 0 ? 0.5 : 0) +
-                (i === items.length - 1 ? 0.5 : 0),
-              MOBILE_SCREENS_PER_QUOTE +
-                (i === 0 ? 0.5 : 0) +
-                (i === items.length - 1 ? 0.5 : 0),
-            )}
-            className="h-[var(--desktop-scroll-height)] scroll-mt-18 max-md:h-[var(--mobile-scroll-height)]"
-          />
-        ))}
-      </div>
-
-      <div className="sticky top-18 isolate flex h-[calc(100dvh-4.5rem)] flex-col justify-center overflow-hidden">
+      <div className="sticky top-18 -z-10 h-[calc(100dvh-4.5rem)] overflow-hidden">
         <Image
           src={background}
           alt=""
           fill
           sizes="100vw"
-          className="drift -z-20 object-cover opacity-45"
+          className="drift object-cover opacity-45"
         />
-        <div className="absolute inset-0 -z-10 bg-linear-to-b from-night via-night/60 to-night" />
+        <div className="absolute inset-0 bg-linear-to-b from-night via-night/60 to-night" />
+      </div>
 
-        <div className="mx-auto w-full max-w-350 px-5 md:px-12">
+      <div className="mx-auto -mt-[calc(100dvh-4.5rem)] w-full max-w-350 px-5 md:px-12 lg:grid lg:grid-cols-[minmax(0,1fr)_auto] lg:gap-16">
+        <div className="py-20 lg:sticky lg:top-18 lg:flex lg:h-[calc(100dvh-4.5rem)] lg:flex-col lg:justify-center lg:py-0">
           <h2
             id="testimonios"
             className="text-4xl font-black tracking-[-0.035em] md:text-6xl"
@@ -98,17 +66,16 @@ export function Testimonials({
             Lo que dicen <span className="text-accent">de nosotros</span>
           </h2>
 
-          <div className="mt-8 grid md:mt-14">
+          <div className="mt-8 grid gap-14 md:mt-14 lg:gap-0">
             {items.map((t, i) => (
               <figure
                 key={t.slug}
-                aria-hidden={i !== active}
-                className={`[grid-area:1/1] transition duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] motion-reduce:transition-none ${
+                className={`lg:[grid-area:1/1] lg:transition lg:duration-700 lg:ease-[cubic-bezier(0.16,1,0.3,1)] motion-reduce:transition-none ${
                   i === active
-                    ? "translate-y-0 opacity-100"
+                    ? ""
                     : i < active
-                      ? "pointer-events-none -translate-y-6 opacity-0"
-                      : "pointer-events-none translate-y-6 opacity-0"
+                      ? "lg:pointer-events-none lg:-translate-y-6 lg:opacity-0"
+                      : "lg:pointer-events-none lg:translate-y-6 lg:opacity-0"
                 }`}
               >
                 <span
@@ -120,7 +87,7 @@ export function Testimonials({
                 <blockquote className="max-w-[40ch] text-xl font-bold leading-[1.2] tracking-[-0.02em] sm:text-2xl md:text-4xl md:leading-[1.15] lg:text-[2.75rem]">
                   {t.quote}
                 </blockquote>
-                <figcaption className="mt-6 flex items-center gap-4 md:mt-8">
+                <figcaption className="mt-6 flex items-center gap-4 md:mt-8 lg:hidden">
                   <span className="h-px w-10 bg-accent" />
                   <span>
                     <span className="block text-lg font-black tracking-tight">
@@ -134,36 +101,30 @@ export function Testimonials({
               </figure>
             ))}
           </div>
+        </div>
 
-          <div
-            role="tablist"
-            aria-label="Testimonios"
-            className="mt-10 grid grid-cols-3 gap-4 md:mt-16 md:gap-8"
-          >
-            {items.map((t, i) => (
-              <button
-                key={t.slug}
-                role="tab"
-                aria-selected={i === active}
-                onClick={() => goTo(i)}
-                className="group text-left"
-              >
-                <span className="relative block h-0.5 overflow-hidden bg-paper/20">
-                  <span
-                    className={`absolute inset-0 origin-left bg-accent transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] motion-reduce:transition-none ${i <= active ? "scale-x-100" : "scale-x-0"}`}
-                  />
-                </span>
-                <span
-                  className={`mt-3 block text-sm font-semibold transition-colors md:text-base ${i === active ? "text-paper" : "text-muted group-hover:text-paper"}`}
-                >
-                  {t.name}
-                </span>
-                <span className="hidden text-xs text-muted md:block">
-                  {t.event}
-                </span>
-              </button>
-            ))}
-          </div>
+        <div className="hidden py-[calc(22.5dvh-2.25rem)] lg:block">
+          {items.map((t, i) => (
+            <button
+              key={t.slug}
+              data-i={i}
+              ref={(el) => {
+                steps.current[i] = el;
+              }}
+              aria-current={i === active}
+              onClick={() => goTo(i)}
+              className={`group flex h-[55dvh] w-full flex-col justify-center border-l-2 pl-6 text-left transition-colors duration-500 ${
+                i === active
+                  ? "border-accent text-paper"
+                  : "border-paper/20 text-muted hover:text-paper"
+              }`}
+            >
+              <span className="text-2xl font-black tracking-tight xl:text-3xl">
+                {t.name}
+              </span>
+              <span className="mt-1 text-sm text-muted">{t.event}</span>
+            </button>
+          ))}
         </div>
       </div>
     </section>
