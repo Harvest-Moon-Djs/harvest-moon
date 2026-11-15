@@ -10,7 +10,8 @@ const subscribe = (cb: () => void) => {
 };
 
 // Muted looping clip that plays only while on screen (display:none copies never start).
-// Reduced motion or blocked autoplay (iOS low-power mode) -> native controls instead.
+// Autoplays even under reduced motion (Windows with animations off reports it); those users get controls to pause.
+// Blocked autoplay (iOS low-power mode) -> native controls instead.
 export function Video({ src, title, poster }: { src: string; title: string; poster?: string }) {
   const ref = useRef<HTMLVideoElement>(null);
   const reduced = useSyncExternalStore(subscribe, () => matchMedia(REDUCED).matches, () => false);
@@ -18,14 +19,14 @@ export function Video({ src, title, poster }: { src: string; title: string; post
 
   useEffect(() => {
     const v = ref.current;
-    if (!v || reduced) return;
+    if (!v) return;
     const io = new IntersectionObserver(([e]) => {
       if (e.isIntersecting) v.play().catch(() => setBlocked(true));
       else v.pause();
     });
     io.observe(v);
     return () => io.disconnect();
-  }, [reduced]);
+  }, []);
 
   return (
     <video ref={ref} src={src} poster={poster} muted loop playsInline preload="metadata" controls={reduced || blocked} aria-label={title} className="h-full w-full object-cover" />
