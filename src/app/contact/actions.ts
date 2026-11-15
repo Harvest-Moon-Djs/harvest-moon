@@ -9,6 +9,10 @@ const str = (fd: FormData, k: string) => String(fd.get(k) ?? "").replace(/\s+/g,
 export async function submitContact(fd: FormData) {
   if (str(fd, "website")) redirect("/contact?enviado=1#formulario"); // honeypot: bots fill it, humans never see it
 
+  // Time trap: nobody fills this form in under 3s. Missing/garbage ts is NaN and fails too.
+  // ponytail: ts is unsigned, a bot can forge an old one; HMAC-sign it or add Turnstile if spam continues.
+  if (!(Date.now() - Number(fd.get("ts") || NaN) >= 3000)) redirect("/contact?error=1#formulario");
+
   const name = str(fd, "name"), email = str(fd, "email"), message = String(fd.get("message") ?? "").trim();
   if (!name || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email) || !message || message.length > 5000 || !fd.get("privacy")) {
     redirect("/contact?error=1#formulario");

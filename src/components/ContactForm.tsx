@@ -7,6 +7,9 @@ export function ContactForm() {
   return (
     <form action={submitContact} className="grid gap-5 md:grid-cols-2">
       <input type="text" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" className="hidden" />
+      {/* Time trap: render time, checked in submitContact. The page is rendered per request (it reads searchParams). */}
+      {/* eslint-disable-next-line react-hooks/purity -- server component, the per-request timestamp is the point */}
+      <input type="hidden" name="ts" value={Date.now()} />
       <div>
         <label htmlFor="name" className={label}>Nombre</label>
         <input id="name" name="name" required maxLength={200} autoComplete="name" className={field} />
