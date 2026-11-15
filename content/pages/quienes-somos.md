@@ -1,10 +1,9 @@
 ---
 title: "Conoce la historia de Rodrigo, nuestro fundador"
-subtitle: "Un amor con 25 años de trayectoria"
 image: /media/pages/rodrigo-historia.jpeg
 ---
 
-## Un amor con 25 años de trayectoria
+## Un amor con 30 años de trayectoria
 
 Comienza en Argentina. A sus 15 años entra a trabajar como DJ de bodas en la empresa Repila, la más importante del rubro en su país. Así fue DJ en más de 800 bodas, la mayoría bodas luxury, y en fiestas empresariales.
 
