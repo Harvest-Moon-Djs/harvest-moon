@@ -1,5 +1,6 @@
 ---
 title: "Conoce la historia de Rodrigo, nuestro fundador"
+subtitle: "De Buenos Aires a Barcelona"
 image: /media/pages/rodrigo-historia.jpeg
 ---
 
