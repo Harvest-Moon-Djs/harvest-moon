@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import { PlayIcon, SpotifyLogo } from "@phosphor-icons/react/dist/ssr";
 import { acceptSpotify, useSpotifyAccepted } from "@/lib/consent";
@@ -9,10 +10,12 @@ import { acceptSpotify, useSpotifyAccepted } from "@/lib/consent";
 // Embed from any playlist URL the editor pastes (share links include ?si=..., that's fine).
 export function SpotifyPlaylist({ url, title, cover, eager }: { url: string; title: string; cover?: string; eager?: boolean }) {
   const accepted = useSpotifyAccepted();
+  // Each cover opens only on its own click and comes back on the next visit; consent itself persists.
+  const [open, setOpen] = useState(false);
   const id = url.match(/playlist\/([A-Za-z0-9]+)/)?.[1];
   if (!id) return null;
 
-  if (!accepted) {
+  if (!open || !accepted) {
     return (
       <div className="reveal relative flex h-[352px] w-full flex-col items-start justify-between overflow-hidden rounded-xl border border-line bg-night-2 p-6">
         {cover && (
@@ -27,10 +30,12 @@ export function SpotifyPlaylist({ url, title, cover, eager }: { url: string; tit
           <p className="mt-5 text-2xl font-black tracking-tight">{title}</p>
         </div>
         <div className="relative">
-          <button onClick={acceptSpotify} className="btn btn-accent h-10 gap-2 px-4 text-sm">
+          <button onClick={() => { acceptSpotify(); setOpen(true); }} className="btn btn-accent h-10 gap-2 px-4 text-sm">
             <PlayIcon size={16} weight="fill" /> Escuchar
           </button>
-          <p className={`mt-3 max-w-[34ch] text-xs leading-relaxed ${cover ? "text-white/75" : "text-muted"}`}>Al darle a escuchar aceptas las cookies de Spotify en todo el sitio.</p>
+          {!accepted && (
+            <p className={`mt-3 max-w-[34ch] text-xs leading-relaxed ${cover ? "text-white/75" : "text-muted"}`}>Al darle a escuchar aceptas las cookies de Spotify en todo el sitio.</p>
+          )}
         </div>
       </div>
     );
