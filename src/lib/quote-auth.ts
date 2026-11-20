@@ -18,7 +18,7 @@ function getAuthConfig(): AuthConfig | null {
   if (
     !QUOTE_ADMIN_USERNAME ||
     !QUOTE_ADMIN_PASSWORD ||
-    QUOTE_ADMIN_PASSWORD.length < 12 ||
+    QUOTE_ADMIN_PASSWORD.length < 8 ||
     !QUOTE_SESSION_SECRET ||
     QUOTE_SESSION_SECRET.length < 32
   ) {
