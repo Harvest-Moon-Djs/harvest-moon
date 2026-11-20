@@ -14,7 +14,7 @@ services:
   - title: Cocktails / Afterworks
     text: jazz. soul. bossanova. ambient
   - title: Eventos corporativos
-    text: audiovisuales
+    text: audiovisuales. bingo musical. fiestas navideñas. cenas de fin de año
 highlights:
   - title: Tus invitados bailando = nuestra garantía
     image: /media/videos/invitados-bailando.jpg
