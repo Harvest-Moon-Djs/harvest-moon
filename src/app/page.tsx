@@ -8,7 +8,7 @@ import { Testimonials } from "@/components/Testimonials";
 import { getArtists, getPage, getPlaylists, getPosts, getTestimonials } from "@/lib/content";
 
 type Inicio = {
-  services: { title: string; text: string }[];
+  services: { title: string; text: string; href?: string }[];
   highlights: Chapter[];
 };
 
@@ -47,7 +47,9 @@ export default function Home() {
       <ul className="grid border-y border-line md:grid-cols-3">
         {page.services.map((s) => (
           <li key={s.title} className="reveal border-b border-line px-5 py-8 last:border-b-0 md:border-r md:px-12 md:py-10 md:nth-[3n]:border-r-0 md:nth-last-[-n+3]:border-b-0">
-            <strong className="block text-2xl font-black tracking-tight md:text-[1.75rem]">{s.title}</strong>
+            <strong className="block text-2xl font-black tracking-tight md:text-[1.75rem]">
+              {s.href ? <Link href={s.href} className="underline decoration-accent decoration-2 underline-offset-6 hover:text-accent">{s.title}</Link> : s.title}
+            </strong>
             <span className="mt-2 block text-xs font-light tracking-wide text-accent">{s.text}</span>
           </li>
         ))}

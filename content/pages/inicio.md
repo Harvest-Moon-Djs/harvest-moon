@@ -7,6 +7,7 @@ services:
   - title: Fiestas temáticas
     text: disco. rock. africana. brasilera
   - title: Bodas
+    href: /dj-bodas-barcelona
     text: clásicos y contemporáneos para todos los gustos
   - title: Pool parties
     text: house. deep house. funk. disco house
