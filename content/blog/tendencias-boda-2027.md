@@ -13,7 +13,7 @@ Hemos repasado el informe *Tendencias 2027* de [bodas.net](https://www.bodas.net
 
 ![Pareja bajo una lámpara de araña en una ceremonia íntima](/media/blog/tendencias-2027/narrativa.jpg)
 
-Cada detalle cuenta algo de la pareja. Los formatos rígidos dejan paso a celebraciones naturales y auténticas que **implican de verdad a los invitados**: ceremonias circulares, espacios que cambian a lo largo del día y detalles pensados para tocarse, probarse y fotografiarse. Las búsquedas de "ceremonia circular" y "bodas effortless" no paran de crecer.
+Cada detalle cuenta algo de la pareja. Los formatos rígidos dejan paso a celebraciones naturales y auténticas que **implican de verdad a los invitados**: ceremonias circulares, espacios que cambian a lo largo del día y detalles pensados para probarse y fotografiarse. Las búsquedas de "ceremonia circular" y "bodas effortless" no paran de crecer.
 
 **Cómo suena:** una boda con historia necesita una banda sonora con historia. Las canciones que os unieron, la que sonaba en vuestro primer viaje, ese clásico que siempre pone a bailar a la familia... La música que conduce la fiesta de un momento a otro es parte del relato.
 
