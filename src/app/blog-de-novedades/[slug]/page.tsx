@@ -33,14 +33,14 @@ export default async function Post({ params }: PageProps<"/blog-de-novedades/[sl
 
   return (
     <article className="bg-paper text-night">
-      <div className="mx-auto max-w-[1400px] px-5 pt-16 md:px-12 md:pt-24">
+      <div className="mx-auto max-w-350] px-5 pt-16 md:px-12 md:pt-24">
         <time dateTime={p.date} className="text-sm text-night/60">{formatDate(p.date)}</time>
         <h1 className="mt-3 max-w-[20ch] text-5xl font-black leading-[0.95] tracking-[-0.04em] md:text-7xl">{p.title}</h1>
-        <div className="relative mt-12 aspect-[21/9] overflow-hidden">
+        <div className="relative mt-12 aspect-21/9 overflow-hidden">
           <Image src={p.cover} alt="" fill priority sizes="100vw" className="object-cover" />
         </div>
       </div>
-      <div className="mx-auto max-w-[1400px] px-5 py-16 md:px-12 md:py-20">
+      <div className="mx-auto max-w-350] px-5 py-16 md:px-12 md:py-20">
         <div className="prose prose-paper prose-post" dangerouslySetInnerHTML={{ __html: html }} />
       </div>
     </article>
