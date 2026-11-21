@@ -25,8 +25,8 @@ export function Footer() {
           </div>
         </div>
         <nav aria-label="Pie" className="flex flex-col gap-2 text-sm font-semibold">
-          {NAV.map((n) => (
-            <Link key={n.href} href={n.href} className="hover:text-accent">{n.label}</Link>
+          {NAV.flatMap((n) => [n, ...(n.children ?? []).map((c) => ({ ...c, sub: true }))]).map((n) => (
+            <Link key={n.href} href={n.href} className={`hover:text-accent ${"sub" in n ? "pl-4 font-normal" : ""}`}>{n.label}</Link>
           ))}
           <Link href="/contact" className="hover:text-accent">Contacto</Link>
           <Link href="/admin/presupuestos" className="hover:text-accent">Login</Link>
