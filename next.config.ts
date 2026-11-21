@@ -8,6 +8,7 @@ const nextConfig: NextConfig = {
       "./public/media/pages/bodas/baile-novios.jpg",
       "./public/media/pages/bodas/giro-novios.jpg",
       "./public/media/pages/bodas/beso-pista.jpg",
+      "./public/media/pages/eventos/*.jpg",
       "./public/symbol.svg",
     ],
   },

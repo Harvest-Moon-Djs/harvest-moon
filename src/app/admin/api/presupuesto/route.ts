@@ -18,7 +18,27 @@ const MAX_TIERS = 12;
 const MAX_LINE_ITEMS = 20;
 const MAX_LINE_ITEM_PRICE_CENTS = 10_000_000_000;
 const MAX_TIER_TOTAL_CENTS = 10_000_000_000;
-const TIER_PHOTOS = ["bodas/baile-novios.jpg", "bodas/giro-novios.jpg", "bodas/beso-pista.jpg"];
+// Photos (under public/media/pages) and the copy that changes between a wedding and a general party quote.
+// New photos must also be listed in outputFileTracingIncludes in next.config.ts or they won't ship to Vercel.
+const THEMES = {
+  bodas: {
+    cover: "bodas/novios-mesa.jpg",
+    tiers: ["bodas/baile-novios.jpg", "bodas/giro-novios.jpg", "bodas/beso-pista.jpg"],
+    closing: "bodas/mesa-flores.jpg",
+    tiersHeading: "Una experiencia a vuestro ritmo",
+    closingTitle: "Hablemos de vuestra fecha",
+    closingText: "Nos encantará ayudaros a crear una celebración inolvidable.",
+  },
+  eventos: {
+    cover: "eventos/portada-manos-arriba.jpg",
+    tiers: ["eventos/dj-mezclando.jpg", "eventos/bar-disco.jpg", "eventos/controladora.jpg"],
+    closing: "eventos/cierre-pista.jpg",
+    tiersHeading: "Una fiesta a vuestro ritmo",
+    closingTitle: "Hablemos de vuestro evento",
+    closingText: "Nos encantará ayudaros a montar una fiesta que nadie quiera dejar.",
+  },
+};
+type QuoteKind = keyof typeof THEMES;
 
 type QuoteTier = {
   name: string;
@@ -33,6 +53,7 @@ type QuoteLineItem = {
 };
 
 type QuoteInput = {
+  kind: QuoteKind;
   client: string;
   date: string;
   place: string;
@@ -60,9 +81,11 @@ function isValidDate(value: string) {
 
 function isQuoteInput(value: unknown): value is QuoteSubmission {
   if (!isRecord(value)) return false;
-  const { client, date, place, guests, schedule, tiers, terms } = value;
+  const { kind, client, date, place, guests, schedule, tiers, terms } = value;
 
   if (
+    typeof kind !== "string" ||
+    !Object.hasOwn(THEMES, kind) ||
     typeof client !== "string" ||
     !client.trim() ||
     client.length > 150 ||
@@ -181,6 +204,8 @@ function eventDate(value: string) {
 
 function generateQuotePdf(quote: QuoteInput) {
   const site = getSite();
+  const theme = THEMES[quote.kind];
+  const photo = (name: string) => path.join(process.cwd(), "public/media/pages", name);
 
   return new Promise<Buffer>((resolve, reject) => {
     const doc = new PDFDocument({
@@ -204,10 +229,10 @@ function generateQuotePdf(quote: QuoteInput) {
     const contentWidth = pageWidth - MARGIN * 2;
     const pageBottom = pageHeight - MARGIN - 38;
     let cursorY = 0;
-    const coverPhoto = path.join(process.cwd(), "public/media/pages/bodas/novios-mesa.jpg");
-    const closingPhoto = path.join(process.cwd(), "public/media/pages/bodas/mesa-flores.jpg");
+    const coverPhoto = photo(theme.cover);
+    const closingPhoto = photo(theme.closing);
     const logoSvgPath = path.join(process.cwd(), "public/symbol.svg");
-    const tierPhotos = TIER_PHOTOS.map((photo) => path.join(process.cwd(), "public/media/pages", photo));
+    const tierPhotos = theme.tiers.map(photo);
     const logoSvg = readFileSync(logoSvgPath, "utf8");
     const logoPaths = [...logoSvg.matchAll(/<path\b[^>]*\bd="([^"]+)"/g)].map((match) => match[1]);
     if (logoPaths.length === 0) throw new Error("Harvest Moon logo SVG contains no paths");
@@ -232,7 +257,7 @@ function generateQuotePdf(quote: QuoteInput) {
           lineBreak: false,
         });
       doc.font("ArchivoBlack").fontSize(21).fillColor(NIGHT)
-        .text("Una experiencia a vuestro ritmo", MARGIN, 84, {
+        .text(theme.tiersHeading, MARGIN, 84, {
           width: contentWidth,
           lineBreak: false,
         });
@@ -429,12 +454,12 @@ function generateQuotePdf(quote: QuoteInput) {
     doc.font("Helvetica-Bold").fontSize(8).fillColor(ACCENT)
       .text("EL SIGUIENTE PASO", MARGIN, 228, { characterSpacing: 1.4, lineBreak: false });
     doc.font("ArchivoBlack").fontSize(30).fillColor(PAPER)
-      .text("Hablemos de vuestra fecha", MARGIN, 249, {
+      .text(theme.closingTitle, MARGIN, 249, {
         width: contentWidth,
         height: 78,
       });
     doc.font("Helvetica").fontSize(11).fillColor(MUTED)
-      .text("Nos encantará ayudaros a crear una celebración inolvidable.", MARGIN, 337, {
+      .text(theme.closingText, MARGIN, 337, {
         width: contentWidth,
         lineBreak: false,
       });

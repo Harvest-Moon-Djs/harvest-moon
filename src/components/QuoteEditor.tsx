@@ -10,6 +10,7 @@ type Company = {
 };
 
 type EventDetails = {
+  kind: "bodas" | "eventos";
   client: string;
   date: string;
   place: string;
@@ -65,6 +66,7 @@ function safeFilename(value: string) {
 
 export function QuoteEditor({ company }: { company: Company }) {
   const [event, setEvent] = useState<EventDetails>({
+    kind: "bodas",
     client: "",
     date: "",
     place: "",
@@ -256,6 +258,18 @@ export function QuoteEditor({ company }: { company: Company }) {
       <section className={sectionClass}>
         <p className="text-sm font-bold uppercase tracking-[0.16em] text-accent">01 · Evento</p>
         <div className="mt-6 grid gap-5 md:grid-cols-2">
+          <div>
+            <label htmlFor="quote-kind" className={labelClass}>Tipo de evento</label>
+            <select
+              id="quote-kind"
+              value={event.kind}
+              onChange={(change) => updateEvent("kind", change.target.value as EventDetails["kind"])}
+              className={fieldClass}
+            >
+              <option value="bodas">Bodas</option>
+              <option value="eventos">Eventos</option>
+            </select>
+          </div>
           <div>
             <label htmlFor="quote-client" className={labelClass}>Cliente</label>
             <input
