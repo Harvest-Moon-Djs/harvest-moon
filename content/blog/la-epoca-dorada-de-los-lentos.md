@@ -7,7 +7,11 @@ excerpt: "Abrimos el cajón del romance y te compartimos una playlist de música
 
 La música es una parte esencial de cualquier boda, y los lentos han ocupado un lugar especial en el corazón de muchas parejas. En este artículo, exploraremos la época dorada de los lentos, un periodo que abarca desde finales de los años 50 hasta los 80, donde este estilo musical floreció y se convirtió en un clásico en las celebraciones nupciales.
 
+![Tocadiscos con un vinilo girando](/media/blog/la-epoca-dorada-de-los-lentos/tocadiscos.jpg "ancho")
+
 ## ¿Qué Son los Lentos?
+
+![Novios bailando un lento](/media/pages/bodas/baile-novios.jpg)
 
 Los lentos son baladas románticas que invitan a las parejas a acercarse y disfrutar de una danza íntima. Estos temas suelen tener letras emotivas y melodías suaves, perfectas para crear momentos memorables en la pista de baile.
 

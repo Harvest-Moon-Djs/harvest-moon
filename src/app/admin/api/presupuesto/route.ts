@@ -18,7 +18,7 @@ const MAX_TIERS = 12;
 const MAX_LINE_ITEMS = 20;
 const MAX_LINE_ITEM_PRICE_CENTS = 10_000_000_000;
 const MAX_TIER_TOTAL_CENTS = 10_000_000_000;
-const TIER_PHOTOS = ["servicios-1.jpg", "servicios-2.jpg", "servicios-3.jpg"];
+const TIER_PHOTOS = ["bodas/baile-novios.jpg", "bodas/giro-novios.jpg", "bodas/beso-pista.jpg"];
 
 type QuoteTier = {
   name: string;
@@ -204,8 +204,8 @@ function generateQuotePdf(quote: QuoteInput) {
     const contentWidth = pageWidth - MARGIN * 2;
     const pageBottom = pageHeight - MARGIN - 38;
     let cursorY = 0;
-    const coverPhoto = path.join(process.cwd(), "public/media/pages/evento-noche.jpg");
-    const closingPhoto = path.join(process.cwd(), "public/media/pages/boda-cornelia-hueso.jpg");
+    const coverPhoto = path.join(process.cwd(), "public/media/pages/bodas/novios-mesa.jpg");
+    const closingPhoto = path.join(process.cwd(), "public/media/pages/bodas/mesa-flores.jpg");
     const logoSvgPath = path.join(process.cwd(), "public/symbol.svg");
     const tierPhotos = TIER_PHOTOS.map((photo) => path.join(process.cwd(), "public/media/pages", photo));
     const logoSvg = readFileSync(logoSvgPath, "utf8");

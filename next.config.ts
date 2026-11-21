@@ -3,9 +3,11 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   outputFileTracingIncludes: {
     "/admin/api/presupuesto": [
-      "./public/media/pages/evento-noche.jpg",
-      "./public/media/pages/boda-cornelia-hueso.jpg",
-      "./public/media/pages/servicios-*.jpg",
+      "./public/media/pages/bodas/novios-mesa.jpg",
+      "./public/media/pages/bodas/mesa-flores.jpg",
+      "./public/media/pages/bodas/baile-novios.jpg",
+      "./public/media/pages/bodas/giro-novios.jpg",
+      "./public/media/pages/bodas/beso-pista.jpg",
       "./public/symbol.svg",
     ],
   },

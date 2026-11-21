@@ -81,7 +81,7 @@ export default function Home() {
         </section>
       )}
 
-      {testimonials.length > 0 && <Testimonials items={testimonials} background="/media/pages/servicios-1.jpg" />}
+      {testimonials.length > 0 && <Testimonials items={testimonials} background="/media/pages/bodas/novia-pista.jpg" />}
 
       <section className="bg-paper text-night">
         <div className="mx-auto max-w-[1400px] px-5 py-20 md:px-12 md:py-24">

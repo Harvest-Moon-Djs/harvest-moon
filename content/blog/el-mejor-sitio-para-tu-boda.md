@@ -11,6 +11,8 @@ Elegir el lugar perfecto para una boda es una de las decisiones más importantes
 
 ## 1. Finca o Casa Rural
 
+![Mesa con copas de cava en un jardín](/media/blog/el-mejor-sitio-para-tu-boda/mesa-jardin.jpg)
+
 Las fincas o casas rurales se han convertido en una opción muy popular para bodas en España. Su encanto natural y el espacio abierto ofrecen una atmósfera única, perfecta para parejas que buscan un ambiente rústico o campestre.
 
 **Ventajas:**
@@ -27,6 +29,8 @@ Las fincas o casas rurales se han convertido en una opción muy popular para bod
 - Servicios limitados: En algunas fincas rurales, los servicios pueden ser limitados, por lo que podría ser necesario contratar proveedores externos para el catering, el sonido, la iluminación, etc.
 
 ## 2. Hoteles y Resorts
+
+![Salón de hotel con lámparas de araña y pista de baile](/media/blog/el-mejor-sitio-para-tu-boda/salon-hotel.jpg)
 
 Los hoteles y resorts son una opción muy común para bodas, especialmente para aquellos que prefieren la comodidad y la seguridad de tener todos los servicios integrados.
 
@@ -45,6 +49,8 @@ Los hoteles y resorts son una opción muy común para bodas, especialmente para 
 
 ## 3. Bodas en la Playa
 
+![Luna llena reflejada en el mar](/media/blog/el-mejor-sitio-para-tu-boda/luna-mar.jpg)
+
 Las bodas en la playa son una opción soñada por muchas parejas, sobre todo en las zonas costeras de España. La combinación del mar, la arena y el sol crea un ambiente romántico e inolvidable.
 
 **Ventajas:**
@@ -61,6 +67,8 @@ Las bodas en la playa son una opción soñada por muchas parejas, sobre todo en 
 
 ## 4. Salones de Banquetes
 
+![Mesa con candelabros de plata en un salón de banquetes](/media/pages/bodas/mesa-velas.jpg)
+
 Los salones de banquetes son un clásico para las bodas más tradicionales, especialmente en las grandes ciudades. Estos lugares están especializados en eventos y bodas, ofreciendo todo lo necesario para un gran evento.
 
 **Ventajas:**
@@ -76,6 +84,8 @@ Los salones de banquetes son un clásico para las bodas más tradicionales, espe
 - Costo elevado: Dependiendo del salón, los precios pueden ser altos, especialmente si se trata de un lugar de lujo o si se requieren muchos servicios adicionales.
 
 ## 5. Bodas en Iglesias o Lugares Religiosos
+
+![Novios caminando por el pasillo de una capilla](/media/blog/el-mejor-sitio-para-tu-boda/capilla.jpg)
 
 Para aquellas parejas que desean una ceremonia religiosa, casarse en una iglesia o en un lugar religioso sigue siendo una opción muy popular en España.
 

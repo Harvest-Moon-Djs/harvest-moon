@@ -31,8 +31,7 @@ highlights:
       - "Somos amantes de la música que viene del corazón: sonidos internacionales, clásicos de los 70, 80 y 90, rock, indie, electrónica y pop. Diseñamos cada playlist para mantener el ambiente enérgico y vibrante en cada momento de tu boda."
       - "Nuestras sesiones son la combinación de tus gustos, nuestra experiencia y lo que pide la pista momento a momento. Con nosotros, tu fiesta será una experiencia personalizada, única y realmente inolvidable para todos."
   - title: De principio a fin
-    image: /media/main/Gemini_Generated_Image_7o666v7o666v7o66.jpeg
-    fit: contain
+    image: /media/pages/bodas/de-principio-a-fin.jpg
     video: ""
     lead: "Estamos contigo en cada paso del camino, desde la primera reunión donde conocemos tus gustos y juntos imaginamos tu fiesta, hasta el día del gran acontecimiento."
     paragraphs:

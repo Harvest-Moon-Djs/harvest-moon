@@ -11,11 +11,15 @@ Cuando pensamos en una boda, rápidamente nos vienen a la mente imágenes de her
 
 ## 1. El DJ como el Corazón del Ambiente
 
+![DJ sonriendo detrás de los platos](/media/blog/lo-mas-importante-de-una-boda/dj-cabina.jpg)
+
 La música tiene una influencia directa sobre las emociones, y en una boda, cada momento tiene un tono único que debe ser acompañado por la canción perfecta. Desde la entrada de los novios hasta el último baile, el DJ tiene la capacidad de modular el ambiente con cada selección musical. Un buen DJ no se limita a reproducir las canciones que los novios han elegido, sino que sabe cuándo y cómo hacer una transición perfecta entre géneros, mantener la energía alta y crear momentos especiales con música emotiva.
 
 Imagina un ambiente romántico durante la ceremonia, una transición energética para el cóctel y una pista de baile llena de vida durante la fiesta. El DJ sabe cómo ajustar su selección de música para guiar a los invitados a través de estas fases, garantizando que cada momento se viva al máximo.
 
 ## 2. Adaptabilidad y Personalización
+
+![DJ pinchando frente a una pared de luces rojas](/media/blog/lo-mas-importante-de-una-boda/dj-luces-rojas.jpg)
 
 Cada boda es única, y un buen DJ entiende esto a la perfección. Además de las canciones que los novios pueden haber solicitado previamente, un DJ experimentado es capaz de leer la sala, detectar el ánimo de los invitados y adaptarse a él. Si la pista de baile está llena de energía, puede subir el tempo; si nota que la gente prefiere algo más tranquilo, puede disminuir la intensidad para crear el ambiente adecuado.
 
@@ -23,11 +27,15 @@ La personalización es clave. Un DJ profesional puede tomar las canciones prefer
 
 ## 3. La Importancia del "Timing"
 
+![Novios girando en la pista de baile](/media/pages/bodas/giro-novios.jpg)
+
 En una boda, el timing lo es todo. El DJ no solo se encarga de reproducir música; también debe saber cuándo hacer las transiciones adecuadas. ¿Es el momento de cortar el pastel? El DJ lo sabe y ajusta la música para acompañar ese momento especial. ¿Es la hora del primer baile de los novios? El DJ debe marcar la entrada de esta tradición con la canción perfecta, en el volumen adecuado y con el ritmo justo para hacer que todo sea mágico.
 
 El ritmo de la música, la selección adecuada y la sincronización precisa son factores clave que aseguran que los momentos más importantes de la boda se vivan de la manera más especial posible.
 
 ## 4. Un Buen DJ Hace de la Pista de Baile el Corazón de la Fiesta
+
+![Novia bailando en el suelo rodeada de invitados](/media/pages/bodas/novia-pista.jpg)
 
 Uno de los objetivos de la boda, más allá de la ceremonia en sí, es que los invitados se diviertan. Aquí es donde el DJ juega un papel fundamental. Un buen DJ sabe cómo leer al público y mantener la pista de baile llena. Si bien los novios pueden tener en mente canciones específicas, un DJ experimentado sabe cuándo agregar ese "toque sorpresa", esa canción que hará que todos se unan a la pista de baile sin pensarlo dos veces.
 
@@ -35,11 +43,15 @@ Además, un DJ tiene la capacidad de mezclar géneros para asegurarse de que tod
 
 ## 5. Tecnología y Equipamiento de Alta Calidad
 
+![Controlador de DJ profesional](/media/blog/lo-mas-importante-de-una-boda/controlador.jpg)
+
 A diferencia de hace algunos años, hoy en día un buen DJ no solo es experto en música, sino que también debe contar con el equipamiento adecuado para ofrecer una experiencia sonora de alta calidad. Desde sistemas de sonido potentes hasta efectos de luz que complementan la música, el DJ moderno debe contar con todo lo necesario para crear una atmósfera envolvente.
 
 No se trata solo de poner música, sino de lograr que la calidad del sonido y las luces acompañen la energía de la boda. Un DJ profesional tiene el conocimiento y las herramientas para garantizar que todo su equipo funcione a la perfección durante toda la celebración, sin que haya fallos técnicos que puedan afectar la experiencia de los invitados.
 
 ## 6. Menos Estrés para los Novios
+
+![Novia con un cartel que dice "They did it! Let's party!"](/media/blog/lo-mas-importante-de-una-boda/lets-party.jpg)
 
 La organización de una boda puede ser estresante. Los novios tienen mil cosas en la cabeza y muchas decisiones que tomar. Contar con un buen DJ les da la tranquilidad de saber que la música estará en manos de un profesional que sabe lo que está haciendo. Desde el inicio de la ceremonia hasta el último baile, los novios pueden disfrutar de su día sin preocuparse por cómo se desarrollará la fiesta musicalmente.
 

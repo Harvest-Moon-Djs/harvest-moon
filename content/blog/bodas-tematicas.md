@@ -9,6 +9,8 @@ Las bodas temáticas han ganado popularidad en los últimos años, convirtiéndo
 
 ## ¿Qué es una Boda Temática?
 
+![Invitados vestidos de época con las manos en alto](/media/pages/bodas/invitados-manos.jpg)
+
 Una boda temática gira en torno a una idea, estilo o concepto específico que se refleja en todos los aspectos del evento: desde las invitaciones y la decoración hasta el vestuario y las actividades. El tema puede estar inspirado en una época histórica, una película, un lugar, una estación del año o incluso en los pasatiempos favoritos de la pareja.
 
 Lo más importante es que el tema elegido tenga un significado especial para los novios, asegurando que cada detalle esté cargado de emociones y recuerdos.
@@ -19,21 +21,31 @@ Si estás buscando inspiración para tu boda temática, aquí tienes algunas ide
 
 ## 1. Bodas de Época
 
+![Invitados bailando en una boda de época](/media/pages/bodas/baile-regencia.jpg)
+
 Las bodas inspiradas en épocas pasadas, como los años 20, 50 o la era victoriana, son perfectas para quienes aman el glamour y la nostalgia. Los vestidos vintage, los peinados clásicos y la música de la época crean una atmósfera encantadora y sofisticada.
 
 ## 2. Temática de Películas o Series
+
+![Castillo de fantasía iluminado de noche](/media/blog/bodas-tematicas/castillo.jpg)
 
 Para los amantes del cine y la televisión, una boda inspirada en su película o serie favorita puede ser un sueño hecho realidad. Desde "Harry Potter" hasta "Star Wars", las opciones son infinitas. Los disfraces, la decoración y los detalles personalizados transportan a los invitados a un mundo de fantasía.
 
 ## 3. Bodas Rústicas o Campestres
 
+![Novios paseando por un campo junto a un granero](/media/blog/bodas-tematicas/campo.jpg)
+
 El estilo rústico es una opción popular por su encanto natural y relajado. Se caracteriza por elementos como madera, flores silvestres, luces colgantes y detalles hechos a mano. Este tema es ideal para celebraciones al aire libre en granjas o jardines.
 
 ## 4. Viajes y Aventura
 
+![Pila de maletas antiguas de colores](/media/blog/bodas-tematicas/maletas.jpg)
+
 Si viajar es tu pasión, una boda con temática de viajes es una excelente opción. Mapas, maletas antiguas, pasaportes personalizados y nombres de mesas inspirados en destinos favoritos son algunos de los elementos que puedes incorporar.
 
 ## 5. Temáticas de Cuentos de Hadas
+
+![Farolillos iluminados en el cielo nocturno](/media/blog/bodas-tematicas/farolillos.jpg)
 
 Una boda de cuento de hadas puede incluir castillos, carruajes y decoraciones dignas de una princesa. Este tema es perfecto para parejas que sueñan con un día mágico y lleno de romance.
 

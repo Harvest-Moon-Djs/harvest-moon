@@ -43,7 +43,7 @@ content:
       - { name: date, label: Fecha, type: date, required: true }
       - { name: cover, label: Portada (16:9), type: image, required: true }
       - { name: excerpt, label: Resumen, type: text, description: "Una o dos frases. Aparece en la lista del blog y en la portada." }
-      - { name: body, label: Texto, type: rich-text }
+      - { name: body, label: Texto, type: rich-text, options: { format: markdown } }
 
   - name: playlists
     label: Playlists

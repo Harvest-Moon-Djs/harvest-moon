@@ -15,11 +15,15 @@ Los sitios web también pueden incluir galerías de fotos, listas de regalos y r
 
 ## 2. Transmisiones en Vivo y Realidad Virtual
 
+![Cámara de vídeo grabando un evento en directo](/media/blog/tecnologia-en-bodas-y-eventos/camara.jpg)
+
 Con la globalización y las limitaciones de desplazamiento, muchas parejas optan por transmitir en vivo sus ceremonias. Plataformas como Zoom o servicios especializados permiten que amigos y familiares de cualquier parte del mundo puedan ser parte del día especial.
 
 Para una experiencia más inmersiva, algunas bodas también incorporan realidad virtual, permitiendo a los invitados remotos sentir que están presentes en la celebración.
 
 ## 3. Drones y Fotografía Aérea
+
+![Vista aérea de una fiesta al aire libre iluminada](/media/blog/tecnologia-en-bodas-y-eventos/vista-aerea.jpg)
 
 Los drones se han convertido en una herramienta indispensable para capturar vistas únicas y espectaculares de bodas y eventos. Estos dispositivos permiten obtener fotografías y videos aéreos que resaltan la magnitud y belleza del lugar, creando recuerdos visuales impactantes.
 
@@ -27,11 +31,15 @@ Además, algunos proveedores ofrecen servicios de edición avanzada que incluyen
 
 ## 4. Aplicaciones y Herramientas de Organización
 
+![Manos tomando notas junto a un portátil y un móvil](/media/blog/tecnologia-en-bodas-y-eventos/planificacion.jpg)
+
 La organización de una boda puede ser un proceso abrumador, pero las aplicaciones diseñadas específicamente para este propósito están facilitando enormemente el trabajo. Aplicaciones como Zola, WeddingWire y The Knot permiten gestionar presupuestos, crear listas de tareas y coordinar con proveedores.
 
 Estas plataformas también ofrecen herramientas para que los invitados interactúen, como encuestas de preferencias musicales o menús personalizados.
 
 ## 5. Iluminación Inteligente y Experiencias Interactivas
+
+![Haz de luz de una bola de discoteca](/media/blog/tecnologia-en-bodas-y-eventos/luces.jpg)
 
 La tecnología también está cambiando la forma en que se ambientan los espacios. Sistemas de iluminación inteligente permiten crear atmósferas personalizadas que cambian a lo largo del evento, sincronizándose incluso con la música.
 
