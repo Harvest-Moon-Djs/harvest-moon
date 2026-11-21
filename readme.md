@@ -1,6 +1,6 @@
 # Harvest Moon
 
-Website for **Harvest Moon**, a Barcelona-based DJ and events agency, live at [harvestmoonevents.eu](https://www.harvestmoonevents.eu). The site is in Spanish and covers the agency's services, artists, playlists, testimonials and blog, with a contact form for enquiries. Staff also get a private quote builder that produces branded PDF proposals.
+Website for **Harvest Moon**, a Barcelona-based DJ and events agency, live at [harvestmoondjs.com](https://www.harvestmoondjs.com). The site is in Spanish and covers the agency's services, artists, playlists, testimonials and blog, with a contact form for enquiries. Staff also get a private quote builder that produces branded PDF proposals.
 
 ## Quick start
 

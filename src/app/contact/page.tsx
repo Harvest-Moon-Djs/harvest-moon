@@ -3,7 +3,10 @@ import Image from "next/image";
 import { ContactForm } from "@/components/ContactForm";
 import { getPage, getSite } from "@/lib/content";
 
-export const metadata: Metadata = { title: "Contacto" };
+export const metadata: Metadata = {
+  title: "Contacto y presupuesto de DJ en Barcelona",
+  description: "Cuéntanos tu boda o evento y te enviamos un presupuesto de DJ, sonido e iluminación a medida. Atendemos en Barcelona y alrededores.",
+};
 
 export default async function Contact({ searchParams }: PageProps<"/contact">) {
   const page = getPage("contacto");
@@ -14,7 +17,7 @@ export default async function Contact({ searchParams }: PageProps<"/contact">) {
     <>
       {/* Full-bleed hero: original photo, darkened at the bottom so the text stays readable. */}
       <section className="relative isolate flex min-h-[70dvh] items-end overflow-hidden md:min-h-[75vh] md:max-h-190">
-        <Image src={page.image!} alt="" fill priority sizes="100vw" className="drift -z-20 object-cover" />
+        <Image src={page.image!} alt={page.imageAlt ?? ""} fill priority sizes="100vw" className="drift -z-20 object-cover" />
         <div className="absolute inset-0 -z-10 bg-linear-to-t from-night via-night/55 to-night/25" />
         <div className="mx-auto w-full max-w-350 px-5 pt-32 pb-14 md:px-12 md:pb-20">
           <h1 className="enter text-5xl font-black leading-[0.95] tracking-[-0.04em] md:text-7xl">{page.title}</h1>

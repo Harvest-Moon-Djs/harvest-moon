@@ -2,6 +2,7 @@
 title: "Conoce la historia de Rodrigo, nuestro fundador"
 subtitle: "De Buenos Aires a Barcelona"
 image: /media/pages/rodrigo-historia.jpeg
+imageAlt: Rodrigo, fundador de Harvest Moon, pinchando bajo luces de neón
 ---
 
 ## Un amor con 30 años de trayectoria

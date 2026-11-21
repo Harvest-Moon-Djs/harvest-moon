@@ -54,3 +54,5 @@ Las tradicionales listas de regalos en tiendas físicas han dado paso a opciones
 Los chatbots impulsados por inteligencia artificial están ganando popularidad como asistentes virtuales para eventos. Estos pueden responder preguntas frecuentes de los invitados, como cómo llegar al lugar o qué opciones de menú están disponibles, reduciendo la carga para los organizadores.
 
 La integración de tecnología en bodas y eventos no solo optimiza la organización y la ejecución, sino que también crea experiencias únicas y memorables. En un mundo donde la innovación es constante, las posibilidades para transformar estas celebraciones son infinitas. Si estás planeando un evento especial, considera estas herramientas tecnológicas para llevar tu celebración al siguiente nivel.
+
+Si quieres que la iluminación siga a la música durante toda la noche, mira lo que hacemos en [iluminación y efectos](/servicios) o [escríbenos](/contact) y lo vemos.

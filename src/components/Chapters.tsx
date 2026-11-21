@@ -5,7 +5,7 @@ import Image from "next/image";
 import { Video } from "./Video";
 
 // `image` doubles as the video poster. `fit: contain` shows the whole image (e.g. a collage) over a blurred copy of itself.
-export type Chapter = { title: string; lead: string; paragraphs: string[]; image: string; video?: string; fit?: "cover" | "contain" };
+export type Chapter = { title: string; lead: string; paragraphs: string[]; image: string; alt?: string; video?: string; fit?: "cover" | "contain" };
 
 function Media({ c }: { c: Chapter }) {
   if (c.video) return <Video src={c.video} poster={c.image} title={c.title} />;
@@ -14,10 +14,10 @@ function Media({ c }: { c: Chapter }) {
     return (
       <>
         <Image src={c.image} alt="" fill sizes="20vw" className="scale-110 object-cover opacity-50 blur-2xl" />
-        <Image src={c.image} alt="" fill sizes={sizes} className="object-contain" />
+        <Image src={c.image} alt={c.alt ?? ""} fill sizes={sizes} className="object-contain" />
       </>
     );
-  return <Image src={c.image} alt="" fill sizes={sizes} className="object-cover" />;
+  return <Image src={c.image} alt={c.alt ?? ""} fill sizes={sizes} className="object-cover" />;
 }
 
 // "A = B" titles get an accent-colored "=".

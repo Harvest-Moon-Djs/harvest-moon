@@ -2,6 +2,7 @@
 title: "Nuestra música, tu fiesta."
 subtitle: "DJs para bodas y eventos en Barcelona."
 image: /media/pages/hero-dj-re2.jpeg
+imageAlt: DJ pinchando con vinilos en una fiesta en Barcelona
 services:
   - title: Fiestas temáticas
     text: disco. rock. africana. brasilera
@@ -18,6 +19,7 @@ services:
 highlights:
   - title: Tus invitados bailando = nuestra garantía
     image: /media/videos/invitados-bailando.jpg
+    alt: Invitados bailando en una boda de noche
     video: /media/videos/invitados-bailando.mp4
     lead: "¿Te imaginas ver a todos bailando? Bueno, van a bailar todos. Esta es nuestra garantía."
     paragraphs:
@@ -25,6 +27,7 @@ highlights:
       - "El buen DJ sigue el camino que dicta el ánimo de la pista para ir poniendo la música que divierte y une a todos. Cada canción tiene su momento indicado para sonar. Saber leer esos momentos es clave para que todos tus invitados se sientan parte de la misma fiesta. Y eso lo sabemos hacer."
   - title: Nuestro estilo = tu estilo
     image: /media/videos/nuestro-estilo.jpg
+    alt: Fiesta junto a la piscina con guirnaldas de luces
     video: /media/videos/nuestro-estilo.mp4
     lead: "Cada fiesta tiene su estilo propio, y nuestra misión es fusionar tus preferencias musicales con nuestra experiencia."
     paragraphs:
@@ -32,6 +35,7 @@ highlights:
       - "Nuestras sesiones son la combinación de tus gustos, nuestra experiencia y lo que pide la pista momento a momento. Con nosotros, tu fiesta será una experiencia personalizada, única y realmente inolvidable para todos."
   - title: De principio a fin
     image: /media/pages/bodas/de-principio-a-fin.jpg
+    alt: Novios en el banquete y bailando en la pista
     video: ""
     lead: "Estamos contigo en cada paso del camino, desde la primera reunión donde conocemos tus gustos y juntos imaginamos tu fiesta, hasta el día del gran acontecimiento."
     paragraphs:

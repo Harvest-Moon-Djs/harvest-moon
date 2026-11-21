@@ -60,3 +60,5 @@ La organización de una boda puede ser estresante. Los novios tienen mil cosas e
 En resumen, un buen DJ es mucho más que el encargado de pinchar discos. Es el responsable de guiar el flujo de la boda, de marcar el ritmo de la celebración y de asegurar que la experiencia musical se convierta en una parte integral y memorable del día. Cuando eliges a un DJ con experiencia, no solo estás contratando a alguien que ponga canciones: estás invirtiendo en una experiencia que marcará la diferencia en cómo se vivirá la boda.
 
 La música tiene el poder de hacer que los momentos especiales sean aún más emocionantes, que la pista de baile sea un lugar de alegría compartida y que cada invitado se lleve consigo un recuerdo imborrable de tu gran día. Por todo esto, la elección del DJ adecuado es una de las decisiones más importantes que tomarás para asegurar que tu boda sea todo lo que siempre soñaste.
+
+Conoce a [nuestros DJs](/artistas) y sus estilos, o [cuéntanos cómo imaginas tu boda](/contact) y te preparamos un presupuesto a medida.

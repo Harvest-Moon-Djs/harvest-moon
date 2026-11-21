@@ -7,6 +7,7 @@ components:
     - { name: title, label: Título, type: string, required: true }
     - { name: subtitle, label: Subtítulo, type: text }
     - { name: image, label: Imagen de cabecera, type: image }
+    - { name: imageAlt, label: Descripción de la imagen (alt), type: string }
 
 content:
   - name: artistas

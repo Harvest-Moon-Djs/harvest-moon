@@ -2,7 +2,10 @@ import type { Metadata } from "next";
 import { SpotifyPlaylist } from "@/components/SpotifyPlaylist";
 import { getPlaylists } from "@/lib/content";
 
-export const metadata: Metadata = { title: "Playlists" };
+export const metadata: Metadata = {
+  title: "Playlists para bodas y fiestas",
+  description: "Escucha las playlists de Harvest Moon en Spotify: música para bodas, pool parties, cócteles y fiestas temáticas.",
+};
 
 export default function Playlists() {
   const playlists = getPlaylists();

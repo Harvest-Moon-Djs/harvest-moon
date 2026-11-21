@@ -11,7 +11,13 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: PageProps<"/artistas/[slug]">): Promise<Metadata> {
   const a = getArtist((await params).slug);
-  return { title: a?.name ?? "Artista", openGraph: a ? { images: [a.photo] } : undefined };
+  if (!a) return { title: "Artista" };
+  const genres = a.genres.join(", ").toLowerCase();
+  return {
+    title: `${a.name}, DJ en Barcelona`,
+    description: `${a.name}, DJ de Harvest Moon para bodas y eventos en Barcelona. Estilos: ${genres}. Pide presupuesto.`,
+    openGraph: { images: [a.photo] },
+  };
 }
 
 export default async function ArtistPage({ params }: PageProps<"/artistas/[slug]">) {

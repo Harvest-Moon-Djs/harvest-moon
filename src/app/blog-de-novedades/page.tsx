@@ -2,7 +2,10 @@ import type { Metadata } from "next";
 import { PostCard } from "@/components/PostCard";
 import { getPosts } from "@/lib/content";
 
-export const metadata: Metadata = { title: "Blog" };
+export const metadata: Metadata = {
+  title: "Blog de bodas y fiestas: música, ideas y tendencias",
+  description: "Ideas para tu boda o evento en Barcelona: canciones, tendencias, fincas, bodas temáticas y consejos de DJs que han hecho bailar a cientos de invitados.",
+};
 
 export default function Blog() {
   const posts = getPosts();

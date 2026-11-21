@@ -2,7 +2,10 @@ import type { Metadata } from "next";
 import { ArtistCard } from "@/components/ArtistCard";
 import { getArtists } from "@/lib/content";
 
-export const metadata: Metadata = { title: "Artistas" };
+export const metadata: Metadata = {
+  title: "DJs para bodas y eventos en Barcelona",
+  description: "Conoce a los DJs de Harvest Moon: house, funk, rock, clásicos de los 80 y 90 y más. Elige el DJ que encaja con tu boda o fiesta en Barcelona.",
+};
 
 export default function Artistas() {
   const artists = getArtists();

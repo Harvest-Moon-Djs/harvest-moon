@@ -43,7 +43,7 @@ El oro deja de ser el metal estrella. La plata se convierte en la joya de la cor
 
 ![Mesa con candelabros de plata y velas en un salón de época](/media/pages/bodas/mesa-velas.jpg "ancho")
 
-**Cómo suena:** si la decoración brilla, la iluminación de la pista tiene que acompañar. Un juego de luces bien pensado hace que la plata, el cristal y las lentejuelas cambien a lo largo de la noche.
+**Cómo suena:** si la decoración brilla, la iluminación de la pista tiene que acompañar. Un [juego de luces](/servicios) bien pensado hace que la plata, el cristal y las lentejuelas cambien a lo largo de la noche.
 
 ## 6. Estética Y2K: la boda retro que quieres
 

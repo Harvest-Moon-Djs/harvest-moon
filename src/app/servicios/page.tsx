@@ -3,9 +3,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { getPage } from "@/lib/content";
 
-export const metadata: Metadata = { title: "Servicios" };
+export const metadata: Metadata = {
+  title: "Servicios de DJ, iluminación y sonido para eventos",
+  description: "DJ, planificación del timing, iluminación y efectos (CO2, humo, confeti) para bodas y eventos en Barcelona. Presupuesto a medida.",
+};
 
-type Servicios = { blocks: { title: string; image: string; text: string }[] };
+type Servicios = { blocks: { title: string; image: string; alt?: string; text: string }[] };
 
 export default function Servicios() {
   const page = getPage<Servicios>("servicios");
@@ -20,7 +23,7 @@ export default function Servicios() {
           {page.blocks.map((b) => (
             <div key={b.title} className="reveal">
               <div className="relative aspect-[4/3] overflow-hidden bg-night-2">
-                <Image src={b.image} alt="" fill sizes="(min-width: 768px) 33vw, 100vw" className="object-cover" />
+                <Image src={b.image} alt={b.alt ?? ""} fill sizes="(min-width: 768px) 33vw, 100vw" className="object-cover" />
               </div>
               <h2 className="mt-6 text-2xl font-black tracking-tight">{b.title}</h2>
               <p className="mt-3 leading-relaxed text-muted-2">{b.text}</p>

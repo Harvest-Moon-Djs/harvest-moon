@@ -119,3 +119,5 @@ Cada vez más parejas optan por lugares inusuales y fuera de lo común para cele
 ## Conclusión
 
 La elección del lugar para celebrar tu boda depende de muchos factores, como el estilo de la pareja, el presupuesto, la cantidad de invitados y las expectativas personales. Cada tipo de lugar ofrece ventajas y desventajas que deben ser consideradas cuidadosamente. Ya sea en una finca rústica, un hotel de lujo o una playa paradisíaca, lo más importante es que el lugar elegido refleje tu personalidad y la de tu pareja, creando un ambiente que haga que el día de tu boda sea inolvidable.
+
+Elijas el sitio que elijas, el sonido y la luz se adaptan a él: en una finca sin equipo propio, por ejemplo, llevamos [sonido, iluminación y efectos](/servicios) completos. Y si todavía dudas qué peso tiene la música en el día, lee [por qué el DJ es clave en una boda](/blog-de-novedades/lo-mas-importante-de-una-boda).

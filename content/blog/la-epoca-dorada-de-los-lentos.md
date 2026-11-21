@@ -32,3 +32,5 @@ Whitney Houston (Años 80): Con su poderosa voz, Houston dejó una marca indeleb
 Lionel Richie (Años 80): Con éxitos como "Endless Love", Richie ha creado algunos de los lentos más románticos que siguen siendo populares en las celebraciones.
 
 La época dorada de los lentos no solo representa un periodo musical, sino una forma de celebrar el amor y la conexión en momentos tan especiales como una boda. Al elegir canciones de esta época, no solo traes nostalgia y emoción a tu celebración, sino que también creas recuerdos que durarán toda la vida.
+
+Puedes escuchar más música para bodas en [nuestras playlists](/playlists). Y si quieres que tu primer baile sea uno de estos clásicos, [cuéntanoslo](/contact) y lo preparamos contigo.

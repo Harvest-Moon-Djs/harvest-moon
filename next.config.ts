@@ -20,6 +20,7 @@ const nextConfig: NextConfig = {
       { source: "/blog-de-novedades/blog-post-title-three-t7ct8", destination: "/blog-de-novedades/tecnologia-en-bodas-y-eventos", permanent: true },
       { source: "/blog-de-novedades/blog-post-title-four-wca7a", destination: "/blog-de-novedades/bodas-tematicas", permanent: true },
       { source: "/cart", destination: "/", permanent: true },
+      { source: "/about", destination: "/servicios", permanent: true },
     ];
   },
 };

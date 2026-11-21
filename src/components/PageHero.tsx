@@ -1,7 +1,7 @@
 import Image from "next/image";
 
 // Title block shared by inner pages. Image is optional.
-export function PageHero({ title, subtitle, image }: { title: string; subtitle?: string; image?: string }) {
+export function PageHero({ title, subtitle, image, imageAlt = "" }: { title: string; subtitle?: string; image?: string; imageAlt?: string }) {
   return (
     <section className="mx-auto grid max-w-[1400px] items-start gap-10 px-5 pt-16 pb-12 md:grid-cols-2 md:px-12 md:pt-24">
       <div>
@@ -10,7 +10,7 @@ export function PageHero({ title, subtitle, image }: { title: string; subtitle?:
       </div>
       {image && (
         <div className="relative aspect-[4/3] overflow-hidden">
-          <Image src={image} alt="" fill priority sizes="(min-width: 768px) 50vw, 100vw" className="object-cover" />
+          <Image src={image} alt={imageAlt} fill priority sizes="(min-width: 768px) 50vw, 100vw" className="object-cover" />
         </div>
       )}
     </section>
