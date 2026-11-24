@@ -21,6 +21,8 @@ type EventDetails = {
 type QuoteTier = {
   id: number;
   name: string;
+  discount: string;
+  discountType: "percent" | "amount";
   lineItems: QuoteLineItem[];
 };
 
@@ -50,8 +52,26 @@ function priceInCents(value: string) {
     : 0;
 }
 
-function tierTotalInCents(tier: QuoteTier) {
-  return tier.lineItems.reduce((total, item) => total + priceInCents(item.price), 0);
+function discountPercent(value: string) {
+  const percent = Number(value);
+  return Number.isFinite(percent) ? Math.min(Math.max(percent, 0), 100) : 0;
+}
+
+function tierDiscount(tier: QuoteTier) {
+  return tier.discountType === "percent"
+    ? { discountPercent: discountPercent(tier.discount), discountCents: 0 }
+    : { discountPercent: 0, discountCents: priceInCents(tier.discount) };
+}
+
+// Keep in sync with applyDiscount in src/app/admin/api/presupuesto/route.ts.
+function applyDiscount(cents: number, percent: number, discountCents: number) {
+  return Math.max(0, Math.round((cents * (100 - percent)) / 100) - discountCents);
+}
+
+function tierTotals(tier: QuoteTier) {
+  const original = tier.lineItems.reduce((total, item) => total + priceInCents(item.price), 0);
+  const { discountPercent, discountCents } = tierDiscount(tier);
+  return { original, total: applyDiscount(original, discountPercent, discountCents) };
 }
 
 function safeFilename(value: string) {
@@ -74,7 +94,7 @@ export function QuoteEditor({ company }: { company: Company }) {
     schedule: "",
   });
   const [tiers, setTiers] = useState<QuoteTier[]>([
-    { id: 1, name: "", lineItems: [{ id: 1, description: "", price: "", hidden: false }] },
+    { id: 1, name: "", discount: "", discountType: "percent", lineItems: [{ id: 1, description: "", price: "", hidden: false }] },
   ]);
   const [terms, setTerms] = useState("");
   const [error, setError] = useState("");
@@ -174,7 +194,7 @@ export function QuoteEditor({ company }: { company: Company }) {
 
     setTiers((current) => [
       ...current,
-      { id: nextTierId.current++, name: "", lineItems },
+      { id: nextTierId.current++, name: "", discount: "", discountType: "percent", lineItems },
     ]);
     setIsTierCopyDialogOpen(false);
   }
@@ -197,6 +217,7 @@ export function QuoteEditor({ company }: { company: Company }) {
           guests: Number(event.guests),
           tiers: tiers.map((tier) => ({
             name: tier.name,
+            ...tierDiscount(tier),
             lineItems: tier.lineItems.map((item) => ({
               description: item.description,
               priceCents: priceInCents(item.price),
@@ -439,11 +460,56 @@ export function QuoteEditor({ company }: { company: Company }) {
                   >
                     + Añadir concepto
                   </button>
-                  <p className="mt-4 text-sm font-semibold text-paper" aria-live="polite">
-                    Total de la opción: {currencyFormatter.format(tierTotalInCents(tier) / 100)}
-                  </p>
+                  <div className="mt-4 flex flex-wrap items-center gap-x-6 gap-y-3">
+                    <div className="flex items-center gap-3">
+                      <label htmlFor={`tier-discount-${tier.id}`} className="text-sm font-semibold">
+                        Descuento sobre el total
+                      </label>
+                      <input
+                        id={`tier-discount-${tier.id}`}
+                        type="number"
+                        min={0}
+                        max={tier.discountType === "percent" ? 100 : MAX_LINE_ITEM_PRICE_CENTS / 100}
+                        step="0.01"
+                        value={tier.discount}
+                        onChange={(change) => updateTier(tier.id, "discount", change.target.value)}
+                        placeholder="0"
+                        className={`${fieldClass} w-28`}
+                      />
+                      <label htmlFor={`tier-discount-type-${tier.id}`} className="sr-only">
+                        Tipo de descuento de la opción {index + 1}
+                      </label>
+                      <select
+                        id={`tier-discount-type-${tier.id}`}
+                        value={tier.discountType}
+                        onChange={(change) =>
+                          updateTier(tier.id, "discountType", change.target.value as QuoteTier["discountType"])
+                        }
+                        className={`${fieldClass} w-20`}
+                      >
+                        <option value="percent">%</option>
+                        <option value="amount">€</option>
+                      </select>
+                    </div>
+                    <p className="text-sm font-semibold text-paper" aria-live="polite">
+                      Total de la opción:{" "}
+                      {(() => {
+                        const { original, total } = tierTotals(tier);
+                        return (
+                          <>
+                            {total < original && (
+                              <s className="mr-2 font-normal text-muted">
+                                {currencyFormatter.format(original / 100)}
+                              </s>
+                            )}
+                            {currencyFormatter.format(total / 100)}
+                          </>
+                        );
+                      })()}
+                    </p>
+                  </div>
                   <p className="mt-2 text-xs text-muted">
-                    Máximo {MAX_LINE_ITEMS} conceptos por opción. El PDF muestra los conceptos visibles y el total, nunca los precios individuales. Los conceptos ocultos siguen contando en el total.
+                    Máximo {MAX_LINE_ITEMS} conceptos por opción. El PDF muestra los conceptos visibles y el total, nunca los precios individuales. Los conceptos ocultos siguen contando en el total. Si hay descuento, el PDF muestra el precio original tachado.
                   </p>
                 </div>
               </div>

@@ -42,6 +42,7 @@ type QuoteKind = keyof typeof THEMES;
 
 type QuoteTier = {
   name: string;
+  originalPriceCents: number;
   totalPriceCents: number;
   visibleItems: string[];
 };
@@ -66,12 +67,23 @@ type QuoteInput = {
 type QuoteSubmission = Omit<QuoteInput, "tiers"> & {
   tiers: {
     name: string;
+    discountPercent: number;
+    discountCents: number;
     lineItems: QuoteLineItem[];
   }[];
 };
 
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === "object" && value !== null;
+}
+
+function isPercent(value: unknown): value is number {
+  return typeof value === "number" && Number.isFinite(value) && value >= 0 && value <= 100;
+}
+
+// Keep in sync with applyDiscount in src/components/QuoteEditor.tsx.
+function applyDiscount(cents: number, percent: number, discountCents: number) {
+  return Math.max(0, Math.round((cents * (100 - percent)) / 100) - discountCents);
 }
 
 function isValidDate(value: string) {
@@ -118,6 +130,11 @@ function isQuoteInput(value: unknown): value is QuoteSubmission {
         typeof tier.name !== "string" ||
         !tier.name.trim() ||
         tier.name.length > 70 ||
+        !isPercent(tier.discountPercent) ||
+        typeof tier.discountCents !== "number" ||
+        !Number.isSafeInteger(tier.discountCents) ||
+        tier.discountCents < 0 ||
+        tier.discountCents > MAX_TIER_TOTAL_CENTS ||
         !Array.isArray(tier.lineItems) ||
         tier.lineItems.length < 1 ||
         tier.lineItems.length > MAX_LINE_ITEMS
@@ -397,6 +414,18 @@ function generateQuotePdf(quote: QuoteInput) {
           align: "right",
           lineBreak: false,
         });
+      if (tier.totalPriceCents < tier.originalPriceCents) {
+        const originalText = money(tier.originalPriceCents);
+        const priceRight = textX + textWidth;
+        doc.font("Helvetica").fontSize(9).fillColor("#77728f")
+          .text(originalText, priceRight - priceWidth, cursorY + 39, {
+            width: priceWidth,
+            align: "right",
+            lineBreak: false,
+          });
+        doc.moveTo(priceRight - doc.widthOfString(originalText), cursorY + 44)
+          .lineTo(priceRight, cursorY + 44).lineWidth(0.7).stroke("#77728f");
+      }
 
       if (tier.visibleItems.length) {
         let featureY = cursorY + 23 + titleHeight + 13;
@@ -547,7 +576,12 @@ export async function POST(request: Request) {
       ...input,
       tiers: input.tiers.map((tier) => ({
         name: tier.name,
-        totalPriceCents: tier.lineItems.reduce((total, item) => total + item.priceCents, 0),
+        originalPriceCents: tier.lineItems.reduce((total, item) => total + item.priceCents, 0),
+        totalPriceCents: applyDiscount(
+          tier.lineItems.reduce((total, item) => total + item.priceCents, 0),
+          tier.discountPercent,
+          tier.discountCents,
+        ),
         visibleItems: tier.lineItems.filter((item) => !item.hidden).map((item) => item.description),
       })),
     };
