@@ -11,6 +11,15 @@ const nextConfig: NextConfig = {
       "./public/media/pages/eventos/*.jpg",
       "./public/symbol.svg",
     ],
+    // Default photos from DEFAULT_PRESENTATION in src/lib/presentation.ts.
+    "/admin/api/presentacion": [
+      "./public/media/presentacion/*.jpg",
+      "./public/media/pages/bodas/mesa-velas.jpg",
+      "./public/media/pages/bodas/baile-novios.jpg",
+      "./public/media/pages/bodas/novia-pista.jpg",
+      "./public/media/pages/evento-noche.jpg",
+      "./src/lib/fonts/Archivo-Black.ttf",
+    ],
   },
   async redirects() {
     return [

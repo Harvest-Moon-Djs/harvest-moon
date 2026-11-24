@@ -14,19 +14,19 @@ function formString(formData: FormData, key: string) {
 }
 
 export async function loginQuoteAdmin(formData: FormData) {
-  if (!isQuoteAuthConfigured()) redirect("/admin/presupuestos?error=setup");
+  if (!isQuoteAuthConfigured()) redirect("/admin?error=setup");
 
   const username = formString(formData, "username");
   const password = formString(formData, "password");
   if (!verifyQuoteCredentials(username, password)) {
-    redirect("/admin/presupuestos?error=invalid");
+    redirect("/admin?error=invalid");
   }
 
   await createQuoteSession();
-  redirect("/admin/presupuestos");
+  redirect("/admin");
 }
 
 export async function logoutQuoteAdmin() {
   await clearQuoteSession();
-  redirect("/admin/presupuestos");
+  redirect("/admin");
 }
