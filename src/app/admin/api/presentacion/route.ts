@@ -1,15 +1,8 @@
 import PDFDocument from "pdfkit";
 import path from "node:path";
 import { SITE_URL, getSite } from "@/lib/content";
-import {
-  DEFAULT_PRESENTATION,
-  LIMITS,
-  MAX_BLOCKS,
-  MAX_PHOTO_BYTES,
-  PRESENTATION_TEMPLATES,
-  type CoverLayout,
-  type PresentationBlock,
-} from "@/lib/presentation";
+import { PRESENTATION_TEMPLATES, type CoverLayout, type PresentationPage } from "@/lib/presentation";
+import { readPhotoForPdf, readPresentationRequest } from "@/lib/presentation-store";
 import { isQuoteAuthenticated } from "@/lib/quote-auth";
 
 export const runtime = "nodejs";
@@ -22,51 +15,9 @@ const PAPER = "#f2f0ff";
 const MUTED = "#c4c0e6";
 const PHOTO_HEIGHT = 240;
 const BAND_HEIGHT = 38;
-const MAX_DATA_BYTES = 64 * 1024;
+type GenerateOptions = { cover: CoverLayout; coverFromLeft: boolean };
 
-type PageText = { section: string; eyebrow: string; blocks: PresentationBlock[] };
-
-function isRecord(value: unknown): value is Record<string, unknown> {
-  return typeof value === "object" && value !== null;
-}
-
-function isText(value: unknown, max: number): value is string {
-  return typeof value === "string" && value.length <= max;
-}
-
-function parsePages(value: unknown): PageText[] | null {
-  if (!Array.isArray(value) || value.length !== DEFAULT_PRESENTATION.length) return null;
-  const pages: PageText[] = [];
-  for (const page of value) {
-    if (
-      !isRecord(page) ||
-      !isText(page.section, LIMITS.section) ||
-      !isText(page.eyebrow, LIMITS.eyebrow) ||
-      !Array.isArray(page.blocks) ||
-      page.blocks.length > MAX_BLOCKS ||
-      !page.blocks.every((b) => isRecord(b) && isText(b.title, LIMITS.title) && isText(b.text, LIMITS.text))
-    ) {
-      return null;
-    }
-    pages.push({
-      section: page.section.trim(),
-      eyebrow: page.eyebrow.trim(),
-      blocks: (page.blocks as PresentationBlock[])
-        .map((b) => ({ title: b.title.trim(), text: b.text.trim() }))
-        .filter((b) => b.title || b.text),
-    });
-  }
-  return pages;
-}
-
-// pdfkit only embeds JPEG and PNG; check the bytes, not the client-supplied type.
-function isJpegOrPng(bytes: Buffer) {
-  const jpeg = bytes[0] === 0xff && bytes[1] === 0xd8 && bytes[2] === 0xff;
-  const png = bytes.subarray(0, 8).equals(Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]));
-  return jpeg || png;
-}
-
-function generatePresentationPdf(pages: PageText[], photos: (string | Buffer)[], cover: CoverLayout) {
+function generatePresentationPdf(pages: PresentationPage[], photos: (string | Buffer)[], { cover, coverFromLeft }: GenerateOptions) {
   const site = getSite();
   const website = SITE_URL.replace(/^https?:\/\//, "");
 
@@ -112,7 +63,7 @@ function generatePresentationPdf(pages: PageText[], photos: (string | Buffer)[],
 
     // Titles + bodies. Scales everything down until it fits above the footer; text past the
     // footer is clipped (height option) so pdfkit never spills onto an extra page.
-    function drawBlocks(blocks: PresentationBlock[], top: number, firstTitleSize: number, bodyColor: string) {
+    function drawBlocks(blocks: PresentationPage["blocks"], top: number, firstTitleSize: number, bodyColor: string) {
       const bottom = footerTop - 20;
       const layout = (scale: number, draw: boolean) => {
         let y = top;
@@ -148,8 +99,8 @@ function generatePresentationPdf(pages: PageText[], photos: (string | Buffer)[],
       doc.rect(0, 0, width, height).fill(NIGHT);
 
       if (index === 0) {
-        // Default covers are framed from the left (pdfkit default) like the original PDFs; uploads are centred.
-        const align = typeof photos[0] === "string" ? undefined : "center";
+        // The template's own cover is framed from the left (pdfkit default) like the original PDFs; others are centred.
+        const align = coverFromLeft ? undefined : "center";
         if (cover === "half") {
           // Temática: plain night background behind the text, photo in a band above the footer.
           drawPhoto(photos[0], 370, 390, align);
@@ -203,49 +154,28 @@ export async function POST(request: Request) {
     return Response.json({ error: "Tu sesión ha caducado. Inicia sesión de nuevo." }, { status: 401 });
   }
 
-  let form: FormData;
-  try {
-    form = await request.formData();
-  } catch {
-    return Response.json({ error: "No se pudieron leer los datos de la presentación." }, { status: 400 });
-  }
-
-  const data = form.get("data");
-  let pages: PageText[] | null = null;
-  if (typeof data === "string" && Buffer.byteLength(data) <= MAX_DATA_BYTES) {
-    try {
-      pages = parsePages(JSON.parse(data));
-    } catch {}
-  }
-  if (!pages) {
+  const input = await readPresentationRequest(request);
+  if (!input) {
     return Response.json({ error: "Revisa los textos: alguno es demasiado largo o está incompleto." }, { status: 400 });
   }
-
-  const templateKey = form.get("template");
-  const template =
-    typeof templateKey === "string" && Object.hasOwn(PRESENTATION_TEMPLATES, templateKey)
-      ? PRESENTATION_TEMPLATES[templateKey as keyof typeof PRESENTATION_TEMPLATES]
-      : PRESENTATION_TEMPLATES.boda;
-
-  const photos: (string | Buffer)[] = [];
-  for (let i = 0; i < template.pages.length; i++) {
-    const file = form.get(`photo-${i}`);
-    if (file instanceof File && file.size > 0) {
-      if (file.size > MAX_PHOTO_BYTES) {
-        return Response.json({ error: `La foto de la página ${i + 1} es demasiado grande.` }, { status: 413 });
-      }
-      const bytes = Buffer.from(await file.arrayBuffer());
-      if (!isJpegOrPng(bytes)) {
-        return Response.json({ error: `La foto de la página ${i + 1} debe ser JPG o PNG.` }, { status: 400 });
-      }
-      photos.push(bytes);
-    } else {
-      photos.push(path.join(process.cwd(), "public", template.pages[i].photo));
-    }
-  }
+  const { template, pages } = input;
 
   try {
-    const pdf = await generatePresentationPdf(pages, photos, template.cover);
+    const photos = await Promise.all(pages.map((page) => readPhotoForPdf(page.photo)));
+    const { cover, pages: defaults } = PRESENTATION_TEMPLATES[template];
+    // Trim and drop empty blocks only for the PDF; the editor keeps what was typed.
+    const printable = pages.map((page) => ({
+      ...page,
+      section: page.section.trim(),
+      eyebrow: page.eyebrow.trim(),
+      blocks: page.blocks
+        .map((block) => ({ title: block.title.trim(), text: block.text.trim() }))
+        .filter((block) => block.title || block.text),
+    }));
+    const pdf = await generatePresentationPdf(printable, photos, {
+      cover,
+      coverFromLeft: pages[0].photo === defaults[0].photo,
+    });
     return new Response(new Uint8Array(pdf), {
       headers: {
         "Content-Type": "application/pdf",

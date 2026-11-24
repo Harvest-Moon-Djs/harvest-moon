@@ -15,7 +15,7 @@ export type PresentationPage = {
 
 export const PRESENTATION_PAGE_NAMES = ["Portada", "Página 2", "Página 3", "Página 4", "Página 5"];
 export const MAX_BLOCKS = 4;
-export const LIMITS = { section: 60, eyebrow: 80, title: 160, text: 1500 };
+export const LIMITS = { section: 60, eyebrow: 80, title: 160, text: 1500, photo: 200 };
 export const MAX_PHOTO_BYTES = 3 * 1024 * 1024;
 
 const BODA_PAGES: PresentationPage[] = [
@@ -115,3 +115,12 @@ export const PRESENTATION_TEMPLATES = {
 
 export type PresentationTemplate = keyof typeof PRESENTATION_TEMPLATES;
 export const DEFAULT_PRESENTATION = BODA_PAGES;
+
+// A page photo is either a site photo ("/media/...") or an uploaded one, stored privately in
+// Vercel Blob under UPLOAD_PREFIX and served to logged-in users by /admin/api/presentacion/foto.
+export const UPLOAD_PREFIX = "presentaciones/fotos/";
+export const UPLOADED_PHOTO = /^presentaciones\/fotos\/[a-f0-9-]{36}\.(jpg|png)$/;
+
+export function photoSrc(photo: string) {
+  return photo.startsWith("/media/") ? photo : `/admin/api/presentacion/foto?p=${encodeURIComponent(photo)}`;
+}
