@@ -56,7 +56,7 @@ export function verifyQuoteCredentials(username: string, password: string) {
   const config = getAuthConfig();
   if (!config || username.length > 128 || password.length > 256) return false;
 
-  const validUsername = equalSecret(username, config.username);
+  const validUsername = equalSecret(username.trim().toLowerCase(), config.username.trim().toLowerCase());
   const validPassword = equalSecret(password, config.password);
   return validUsername && validPassword;
 }
