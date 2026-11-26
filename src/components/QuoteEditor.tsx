@@ -299,7 +299,6 @@ export function QuoteEditor({ company }: { company: Company }) {
               onChange={(change) => updateEvent("client", change.target.value)}
               autoComplete="name"
               maxLength={150}
-              required
               className={fieldClass}
             />
           </div>
@@ -310,7 +309,6 @@ export function QuoteEditor({ company }: { company: Company }) {
               type="date"
               value={event.date}
               onChange={(change) => updateEvent("date", change.target.value)}
-              required
               className={fieldClass}
             />
           </div>
@@ -321,7 +319,6 @@ export function QuoteEditor({ company }: { company: Company }) {
               value={event.place}
               onChange={(change) => updateEvent("place", change.target.value)}
               maxLength={200}
-              required
               className={fieldClass}
             />
           </div>
@@ -335,7 +332,6 @@ export function QuoteEditor({ company }: { company: Company }) {
               step={1}
               value={event.guests}
               onChange={(change) => updateEvent("guests", change.target.value)}
-              required
               className={fieldClass}
             />
           </div>
@@ -347,7 +343,6 @@ export function QuoteEditor({ company }: { company: Company }) {
               onChange={(change) => updateEvent("schedule", change.target.value)}
               placeholder="Por ejemplo, 20:00–02:00"
               maxLength={100}
-              required
               className={fieldClass}
             />
           </div>
@@ -378,7 +373,6 @@ export function QuoteEditor({ company }: { company: Company }) {
                     onChange={(change) => updateTier(tier.id, "name", change.target.value)}
                     placeholder="Por ejemplo, Esencial"
                     maxLength={70}
-                    required
                     className={fieldClass}
                   />
                 </div>
@@ -399,7 +393,6 @@ export function QuoteEditor({ company }: { company: Company }) {
                             }
                             placeholder="Por ejemplo, DJ"
                             maxLength={200}
-                            required
                             className={fieldClass}
                           />
                         </div>
@@ -418,7 +411,6 @@ export function QuoteEditor({ company }: { company: Company }) {
                               updateLineItem(tier.id, item.id, "price", change.target.value)
                             }
                             placeholder="Precio (€)"
-                            required
                             className={fieldClass}
                           />
                         </div>

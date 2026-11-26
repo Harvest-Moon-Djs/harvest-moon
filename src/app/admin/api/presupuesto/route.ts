@@ -99,25 +99,20 @@ function isQuoteInput(value: unknown): value is QuoteSubmission {
     typeof kind !== "string" ||
     !Object.hasOwn(THEMES, kind) ||
     typeof client !== "string" ||
-    !client.trim() ||
     client.length > 150 ||
     typeof date !== "string" ||
-    !/^\d{4}-\d{2}-\d{2}$/.test(date) ||
-    !isValidDate(date) ||
+    (date !== "" && (!/^\d{4}-\d{2}-\d{2}$/.test(date) || !isValidDate(date))) ||
     typeof place !== "string" ||
-    !place.trim() ||
     place.length > 200 ||
     typeof guests !== "number" ||
     !Number.isInteger(guests) ||
-    guests < 1 ||
+    guests < 0 ||
     guests > 100000 ||
     typeof schedule !== "string" ||
-    !schedule.trim() ||
     schedule.length > 100 ||
     typeof terms !== "string" ||
     terms.length > 4000 ||
     !Array.isArray(tiers) ||
-    tiers.length < 1 ||
     tiers.length > MAX_TIERS
   ) {
     return false;
@@ -128,7 +123,6 @@ function isQuoteInput(value: unknown): value is QuoteSubmission {
       if (
         !isRecord(tier) ||
         typeof tier.name !== "string" ||
-        !tier.name.trim() ||
         tier.name.length > 70 ||
         !isPercent(tier.discountPercent) ||
         typeof tier.discountCents !== "number" ||
@@ -136,7 +130,6 @@ function isQuoteInput(value: unknown): value is QuoteSubmission {
         tier.discountCents < 0 ||
         tier.discountCents > MAX_TIER_TOTAL_CENTS ||
         !Array.isArray(tier.lineItems) ||
-        tier.lineItems.length < 1 ||
         tier.lineItems.length > MAX_LINE_ITEMS
       ) {
         return false;
@@ -147,7 +140,6 @@ function isQuoteInput(value: unknown): value is QuoteSubmission {
         if (
           !isRecord(lineItem) ||
           typeof lineItem.description !== "string" ||
-          !lineItem.description.trim() ||
           lineItem.description.length > 200 ||
           typeof lineItem.priceCents !== "number" ||
           !Number.isSafeInteger(lineItem.priceCents) ||
@@ -212,6 +204,7 @@ function money(cents: number) {
 }
 
 function eventDate(value: string) {
+  if (!value) return "—";
   return new Date(`${value}T00:00:00`).toLocaleDateString("es-ES", {
     day: "numeric",
     month: "long",
@@ -352,9 +345,9 @@ function generateQuotePdf(quote: QuoteInput) {
 
     const details = [
       ["FECHA", eventDate(quote.date)],
-      ["LUGAR", quote.place],
-      ["INVITADOS", quote.guests.toLocaleString("es-ES")],
-      ["HORARIO", quote.schedule],
+      ["LUGAR", quote.place || "—"],
+      ["INVITADOS", quote.guests ? quote.guests.toLocaleString("es-ES") : "—"],
+      ["HORARIO", quote.schedule || "—"],
     ];
     const detailGap = 28;
     const detailWidth = (contentWidth - detailGap) / 2;
@@ -568,7 +561,7 @@ export async function POST(request: Request) {
   }
 
   if (!isQuoteInput(input)) {
-    return Response.json({ error: "Completa todos los datos y revisa los nombres, textos e importes." }, { status: 400 });
+    return Response.json({ error: "Revisa los nombres, textos e importes." }, { status: 400 });
   }
 
   try {
