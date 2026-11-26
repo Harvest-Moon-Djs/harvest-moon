@@ -6,6 +6,7 @@ import { cookies } from "next/headers";
 const COOKIE_NAME = "hm_quote_admin";
 const COOKIE_PATH = "/admin";
 const SESSION_TTL_SECONDS = 8 * 60 * 60;
+const REMEMBER_TTL_SECONDS = 365 * 24 * 60 * 60;
 
 type AuthConfig = {
   username: string;
@@ -44,8 +45,8 @@ function equalSecret(actual: string, expected: string) {
   return timingSafeEqual(actualPadded, expectedPadded) && actualBytes.length === expectedBytes.length;
 }
 
-function signTimestamp(timestamp: string, secret: string) {
-  return createHmac("sha256", secret).update(`quote-admin:${timestamp}`).digest("hex");
+function signTimestamp(timestamp: string, ttl: string, secret: string) {
+  return createHmac("sha256", secret).update(`quote-admin:${timestamp}:${ttl}`).digest("hex");
 }
 
 export function isQuoteAuthConfigured() {
@@ -61,12 +62,13 @@ export function verifyQuoteCredentials(username: string, password: string) {
   return validUsername && validPassword;
 }
 
-export async function createQuoteSession() {
+export async function createQuoteSession(remember: boolean) {
   const config = getAuthConfig();
   if (!config) throw new Error("Quote admin credentials are not configured.");
 
   const timestamp = String(Math.floor(Date.now() / 1000));
-  const value = `${timestamp}.${signTimestamp(timestamp, config.sessionSecret)}`;
+  const ttl = String(remember ? REMEMBER_TTL_SECONDS : SESSION_TTL_SECONDS);
+  const value = `${timestamp}.${ttl}.${signTimestamp(timestamp, ttl, config.sessionSecret)}`;
   const cookieStore = await cookies();
 
   cookieStore.set(COOKIE_NAME, value, {
@@ -74,7 +76,7 @@ export async function createQuoteSession() {
     secure: process.env.NODE_ENV === "production",
     sameSite: "strict",
     path: COOKIE_PATH,
-    maxAge: SESSION_TTL_SECONDS,
+    maxAge: Number(ttl),
   });
 }
 
@@ -96,16 +98,24 @@ export async function isQuoteAuthenticated() {
   const cookieValue = (await cookies()).get(COOKIE_NAME)?.value;
   if (!cookieValue) return false;
 
-  const [timestamp, signature, ...extra] = cookieValue.split(".");
-  if (!timestamp || !signature || extra.length > 0 || !/^\d{10}$/.test(timestamp) || !/^[a-f0-9]{64}$/.test(signature)) {
+  const [timestamp, ttl, signature, ...extra] = cookieValue.split(".");
+  if (
+    !timestamp ||
+    !ttl ||
+    !signature ||
+    extra.length > 0 ||
+    !/^\d{10}$/.test(timestamp) ||
+    (ttl !== String(SESSION_TTL_SECONDS) && ttl !== String(REMEMBER_TTL_SECONDS)) ||
+    !/^[a-f0-9]{64}$/.test(signature)
+  ) {
     return false;
   }
 
   const issuedAt = Number(timestamp);
   const now = Math.floor(Date.now() / 1000);
-  if (!Number.isSafeInteger(issuedAt) || issuedAt > now || now - issuedAt > SESSION_TTL_SECONDS) {
+  if (!Number.isSafeInteger(issuedAt) || issuedAt > now || now - issuedAt > Number(ttl)) {
     return false;
   }
 
-  return equalSecret(signature, signTimestamp(timestamp, config.sessionSecret));
+  return equalSecret(signature, signTimestamp(timestamp, ttl, config.sessionSecret));
 }

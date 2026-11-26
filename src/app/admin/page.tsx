@@ -78,6 +78,10 @@ export default async function AdminPage({ searchParams }: PageProps<"/admin">) {
             <label htmlFor="password" className="mb-2 block text-sm font-semibold">Contraseña</label>
             <input id="password" name="password" type="password" autoComplete="current-password" required maxLength={256} className={inputClass} />
           </div>
+          <label className="flex items-center gap-2 text-sm">
+            <input type="checkbox" name="remember" />
+            Recuérdame
+          </label>
           <button type="submit" className="btn btn-accent justify-self-start">Iniciar sesión</button>
         </form>
       )}

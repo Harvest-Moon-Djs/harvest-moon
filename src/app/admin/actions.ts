@@ -22,7 +22,7 @@ export async function loginQuoteAdmin(formData: FormData) {
     redirect("/admin?error=invalid");
   }
 
-  await createQuoteSession();
+  await createQuoteSession(formData.get("remember") === "on");
   redirect("/admin");
 }
 
